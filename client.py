@@ -1,16 +1,13 @@
 import socket
 
-HOST = "Client IP"
-PORT = 5555
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((HOST, PORT))
-s.listen()
-conn, addr = s.accept()
-print('Connected by', addr)
+s = socket.socket()
+port = 12345
 while True:
-    data = conn.recv(1024)
-    if not data:
-        break
-    conn.sendall(data)
-    s.close()
+    try:
+        s.connect(('127.0.0.1', port))
+        
+        if(s.recv(1024).decode() == 'andromeda'):
+            s.close()
+            break
+    except:
+        pass

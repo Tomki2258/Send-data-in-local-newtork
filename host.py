@@ -1,11 +1,31 @@
+import eel
+from random import randint
 import socket
 
-HOST = "Server IP"
-PORT = 5555
+eel.init("web")
+@eel.expose
+def server_do():
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((HOST, PORT))
-s.sendall(b'Hello, world')
-data = s.recv(1024)
-print('Received', repr(data))
-s.close()
+    s = socket.socket()		
+    print ("Socket successfully created")
+
+
+    port = 12345			
+    s.bind(('', port))		
+    print ("socket binded to %s" %(port))
+
+    s.listen(5)	
+    print ("socket is listening")		
+
+    while True:
+        print('sus')
+        c, addr = s.accept()	
+        print ('Got connection from', addr )
+
+        c.send('andromeda'.encode())
+
+        c.close()
+
+        break
+
+eel.start("index.html")
