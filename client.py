@@ -4,10 +4,12 @@ s = socket.socket()
 port = 12345
 while True:
     try:
-        s.connect(('127.0.0.1', port))
-        
-        if(s.recv(1024).decode() == 'andromeda'):
-            s.close()
-            break
+        s.connect(('192.168.1.52', port))
+
+        data = s.recv(1024).decode()
+        splitted = data.split('~')
+        print(splitted)
+        s.close()
+        break
     except:
         pass

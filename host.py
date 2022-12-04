@@ -11,12 +11,12 @@ def server_do():
 
 
     port = 12345			
-    s.bind(('', port))		
+    s.bind(('192.168.1.52', port))		
     print ("socket binded to %s" %(port))
 
     s.listen(5)	
     print ("socket is listening")		
-
+    data = 'wiadomosc~cos~tam'
     while True:
         print('sus')
         c, addr = s.accept()	
@@ -25,7 +25,5 @@ def server_do():
         c.send('andromeda'.encode())
 
         c.close()
-
-        break
 
 eel.start("index.html")
